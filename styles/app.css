@@ -1,0 +1,181 @@
+.left {
+	text-align: left;
+}
+.displayon{
+	display: block;
+}
+.btn-next{
+	height: 30px!important;
+	vertical-align: top!important;
+	font-size: 15px!important;
+	padding:0 7px!important;
+}
+#input-box{
+	background-color: #fff;
+	width: 100%;
+	bottom: 0;
+	position: fixed;
+	height: 50px;
+}
+.confirm{
+	width: 98%;
+	margin: 15px auto;
+
+}
+.confirm h4{
+	font-size: 16px;
+	font-weight: normal;
+	/*background-color:*/
+	border-bottom: 3px solid #1E90FF;
+	padding: 1% 4%;
+}
+.confirm p{
+	font-size: 18px;
+	padding: 2% 8%;
+}
+
+/*  ---------    line風css コピペ  ここから-----------------*/
+/*
+body{
+		width:100%;
+		min-width: 320px;
+		margin:0;
+		padding: 0;
+}
+*/
+
+#wrapper{
+		margin: 30px auto;
+		width:95%;
+}
+
+
+/*.arrow_answer,*/
+.arrow_question {
+		position: relative;
+		background: #fff;
+		/*border: 1px solid #c8c8c8;*/
+		border-radius: 10px;
+		width: 65%;
+		font-size: 15px;
+		padding:1%;
+		margin: 5% 0;
+}
+
+.arrow_answer {
+	float: right;
+	margin: 4%;
+}
+
+
+
+
+.arrow_question {
+		float: left;
+}
+/*.arrow_answer {
+		float: right;
+		margin-right: 2%;
+}*/
+
+/*.arrow_answer:after,
+.arrow_answer:before,*/
+.arrow_question:after,
+.arrow_question:before {
+		top: 45%;
+	/*	border: solid transparent;*/
+		content: " ";
+		height: 0;
+		width: 0;
+		position: absolute;
+		pointer-events: none;
+}
+
+
+
+
+.arrow_question:after,
+.arrow_question:before {
+		right: 100%;
+}
+
+
+/*.arrow_answer:after,
+.arrow_answer:before{
+		left: 100%;
+}*/
+
+
+/*.arrow_answer:after,*/
+.arrow_question:after {
+		border-color: rgba(255, 255, 255, 0);
+		border-width: 7px;
+		margin-top: -7px;
+}
+
+
+/*.arrow_answer:after{
+		border-left-color: #fff;
+}*/
+
+
+.arrow_question:after{
+		border-right-color: #fff;
+
+}
+
+
+/*.arrow_answer:before,*/
+.arrow_question:before {
+		border-color: rgba(200, 200, 200, 0);
+		border-width: 9px;
+		margin-top: -9px;
+}
+
+
+/*.arrow_answer:before{
+	border-left-color: #c8c8c8;
+}*/
+
+
+.arrow_question:before {
+		border-right-color: #c8c8c8;
+}
+
+
+.question_image{
+		float: left;
+		width:15%;
+}
+
+/*
+.answer_image{
+		float: right;
+		width:15%;
+}*/
+
+
+/*.answer_image img,*/
+.question_image img{
+		border-radius: 50px;
+		width: 80%
+}
+
+
+.question_Box{
+		width: 100%;
+		overflow: hidden;
+		margin-bottom: 8%;
+}
+
+/*  ---------    line風css コピペ   ここまで-----------------*/
+.input-text-box{
+	bottom: 0;
+	position: fixed;
+	display: inline;
+}
+
+.input-text-box input{
+	display: inline;
+	width: 90%;
+}
