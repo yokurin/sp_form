@@ -64,6 +64,7 @@
 
 
 
+
     //質問の設定
     questionValue[0] = '名前を教えてください。';
     questionValue[1] = '性別を教えてください。\n\n男性は1 女性は2を入力';
@@ -99,6 +100,7 @@
 
 
 
+
     $scope.postText = function()
     {
 
@@ -120,11 +122,86 @@
         //回答者と回答を表示
         //(jQuery未動作のため未実装　【原因】jQueryとangularjsの競合？)
 
+        //postValidation(textValue, successCnt);
+        //json形式でpostしてバリデーションの実行、POSTの仕方は ajaxとは違うので注意！！！
 
-        //ajaxでpostしてバリデーションの実行
-        //if( validation(successCnt, textValue) == true)
-        console.log( postValidation(textValue, successCnt) );
-        if( postValidation(textValue, successCnt) == true )
+        var req = {
+                    method: 'POST',
+                    url: 'http://test.kekkon-ouen.net/regist/likeLINEValidation',
+                    data: $.param({ 'text': textValue, 'successCnt': successCnt}),
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+                  }
+
+
+        $http(req)
+        .success(function(data){
+            //console.log("post: success");
+            console.log(data);
+            if(data == true )
+            {
+                //番号に応じた質問と答えをセット
+                $scope.items[allCnt].answer =  textValue;
+                $scope.items.push({ question: questionValue[successNext] });
+                //成功した答えを保存
+                answerValue[successCnt] = textValue;
+
+                $data.confirms[successCnt] = { question: questionValue[successCnt] , answer: textValue };
+
+                //成功時に実行
+                success(successCnt);
+            }else{
+
+                //エラーメッセージと質問と答えをセット
+                $scope.items[allCnt].answer = textValue;
+                $scope.items.push({ question: errorMsg[random] + " \n\n  " + questionValue[successCnt]  });
+
+                //失敗時に実行
+                error();
+            }
+        })
+        .error(function(data, status){
+            console.log(status);
+            console.log("post: error");
+        });
+
+        /*
+        $http.post('http://test.kekkon-ouen.net/regist/likeLINEValidation', { 'text': textValue, 'successCnt': successCnt})
+        .success(function(data) {
+          console.log("post: success");
+          console.log("success: "+data);
+          //string型で帰えってくる。（APIはいずれ修正します！！；；）
+          if( data == "TRUE" )
+          {
+            //番号に応じた質問と答えをセット
+            $scope.items[allCnt].answer =  textValue;
+            $scope.items.push({ question: questionValue[successNext] });
+            //成功した答えを保存
+            answerValue[successCnt] = textValue;
+
+            $data.confirms[successCnt] = { question: questionValue[successCnt] , answer: textValue };
+
+            //成功時に実行
+            success(successCnt);
+          }else{
+
+            //エラーメッセージと質問と答えをセット
+            $scope.items[allCnt].answer = textValue;
+            $scope.items.push({ question: errorMsg[random] + " \n\n  " + questionValue[successCnt]  });
+
+            //失敗時に実行
+            error();
+          }
+
+        })
+        .error(function(data, status) {
+          console.log(status);
+          console.log("post: error");
+        });
+        */
+
+
+        /*
+        if( data == true )
         {
 
           //番号に応じた質問と答えをセット
@@ -146,6 +223,9 @@
           //失敗時に実行
           error();
         }
+        */
+
+
 
 
         //質問が最後だったときの処理
@@ -200,19 +280,21 @@
 
     };
 
+
     //入力された内容をajaxでバリデーション
     function postValidation(string, successCnt)
     {
-      $http.post("http://localhost/regist/likeLINEValidation", { string: string, successCnt: successCnt })
-      .success(function(data) {
-          console.log
-          return data;
-      })
-      .error(function(data, status) {
+        $http.post("http://test.kekkon-ouen.net/regist/likeLINEValidation", { 'string': string, 'successCnt': successCnt })
+        .success(function(data) {
+          //console.log("post: success");
+          console.log("success: "+data);
+          //$scope.valFlag = data;
+          //console.log("validationFlag: "+$scope.valFlag);
+        })
+        .error(function(data, status) {
           console.log(status);
-          return data;
-      });
-
+          console.log("post: error");
+        });
     }
 
     //バリデーション
